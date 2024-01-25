@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="spliting.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2? family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Finanzy-Bill Splitter</title>
+</head>
+<body>
+    <section class="user-header">
+        <nav>
+          <a href="home.html"><img src="finanzy.png"></a>
+          <div class="nav-links" id="navLinks">
+              <i class="fa fa-times" onclick="hideMenu()"></i>
+              <ul>
+                  <li><a href="userhome.html">HOME</a></li>
+                  <li><a href="budget.html">BUDGET</a></li>
+                  <li><a href="split.html">BILL SPLIT</a></li>
+                  <li><a href="advisoryf.html">ADVISORY</a></li>
+                  <li><a href="about.html">ABOUT</a></li>
+                  <li><a href="contact.html">CONTACT</a></li>
+                  <li><a href="">LOGOUT</a></li>
+              </ul>
+          </div>
+          <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>  
+        <h1>SPLIT YOUR BILL</h1>
+       
+      </section>
+<section id="calculatorSection">
+    
+
+    <form id="divisionForm">
+        <label for="Amount">Total amount spent:</label> <br>
+        <input type="number" id="Amount" required> <br>
+
+        <label for="people">Total number of people:</label> <br>
+        <input type="number" id="people" required> <br> <br>
+
+        <button type="button" onclick="calculate()">Calculate</button>
+        <button type="button" onclick="resetCalculator()">Reset</button>
+    </form>
+
+    <p id="result"></p><br>
+    <p id="left"></p>
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+
+function showMenu(){
+    navLinks.style.right="0";
+}
+function hideMenu(){
+    navLinks.style.right="-200px";
+}
+        function calculate() {
+            
+            var Amount = parseInt(document.getElementById("Amount").value);
+            var people = parseInt(document.getElementById("people").value);
+
+        
+            if (people !== 0) {
+               
+                var result =Math.floor(Amount / people);
+                var left = Amount % people;
+
+              
+                
+                document.getElementById("result").innerHTML = "Result: " + result + "<br>Remaining money: " + left;
+            } else {
+               
+                document.getElementById("result").innerHTML = "Error: Cannot divide by zero";
+            }
+        }
+
+        function resetCalculator() {
+       
+            document.getElementById("Amount").value = "";
+            document.getElementById("people").value = "";
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("left").innerHTML = "";
+        }
+    </script>
+</section>
+</body>
+</html>

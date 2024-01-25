@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget List</title>
+  <link rel="stylesheet" href="budgett.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2? family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <section class="user-header">
+        <nav>
+          <a href="home.html"><img src="finanzy.png"></a>
+          <div class="nav-links" id="navLinks">
+              <i class="fa fa-times" onclick="hideMenu()"></i>
+              <ul>
+                  <li><a href="userhome.html">HOME</a></li>
+                  <li><a href="budget.html">BUDGET</a></li>
+                  <li><a href="split.html">BILL SPLIT</a></li>
+                  <li><a href="advisoryf.html">ADVISORY</a></li>
+                  <li><a href="about.html">ABOUT</a></li>
+                  <li><a href="contact.html">CONTACT</a></li>
+                  <li><a href="">LOGOUT</a></li>
+              </ul>
+          </div>
+          <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>  
+        <h1>BUDGET</h1>
+       
+      </section>
+  <div class="input-section">
+    <input type="text" id="category-input" placeholder="Enter category">
+    <input type="number" id="budget-input" placeholder="Enter budget">
+  </div>
+  <div class="buttons-section">
+    <button id="add-category-budget">Add Category and Budget</button>
+    <button id="add-spent">Add Amount Spent</button>
+    <button id="reset-table">Reset Table</button>
+  </div>
+  <table class="budget-list">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Budget</th>
+        <th>Spent</th>
+        <th>Difference </th>
+      </tr>
+    </thead>
+    <tbody id="budget-items"></tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4" class="total-row">
+          Total: $0 | $0
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <script>
+    var navLinks = document.getElementById("navLinks");
+
+function showMenu(){
+    navLinks.style.right="0";
+}
+function hideMenu(){
+    navLinks.style.right="-200px";
+}
+    const budgetTable = document.getElementById("budget-items");
+const totalRow = document.querySelector(".total-row");
+const categoryInput = document.getElementById("category-input");
+const budgetInput = document.getElementById("budget-input");
+const addCategoryBudgetButton = document.getElementById("add-category-budget");
+const addSpentButton = document.getElementById("add-spent");
+const resetButton = document.getElementById("reset-table");
+
+let totalBudget = 0;
+let totalSpent = 0;
+
+function createRow(category, budget, spent) {
+  const newRow = document.createElement("tr");
+  const categoryCell = document.createElement("td");
+  categoryCell.textContent = category;
+  const budgetCell = document.createElement("td");
+  budgetCell.textContent = budget;
+  budgetCell.setAttribute("data-budget", budget); // store the budget value
+  const spentCell = document.createElement("td");
+  spentCell.textContent = spent;
+  const differenceCell = document.createElement("td");
+  differenceCell.textContent = budget - spent;
+  newRow.appendChild(categoryCell);
+  newRow.appendChild(budgetCell);
+  newRow.appendChild(spentCell);
+  newRow.appendChild(differenceCell);
+  return newRow;
+}
+
+addCategoryBudgetButton.addEventListener("click", () => {
+  const category = categoryInput.value.trim();
+  const budget = parseFloat(budgetInput.value);
+  if (category && !isNaN(budget)) {
+    const newRow = createRow(category, budget, 0);
+    budgetTable.appendChild(newRow);
+    totalBudget += budget;
+    totalSpent += 0; // Initially no amount spent
+    updateTotals();
+    categoryInput.value = "";
+    budgetInput.value = "";
+  } else {
+    alert("Please enter a valid category and budget.");
+  }
+});
+
+addSpentButton.addEventListener("click", () => {
+  const category = categoryInput.value.trim();
+  const spent = parseFloat(budgetInput.value);
+  let isValidInput = true;
+
+  if (!category) {
+    alert("Please enter a valid category.");
+    isValidInput = false;
+  }
+  if (isNaN(spent)) {
+    alert("Please enter a valid amount spent.");
+    isValidInput = false;
+  }
+  if (isValidInput) {
+    let foundRow = false;
+    for (const row of budgetTable.rows) {
+      if (row.cells[0].textContent === category) {
+        const currentSpent = parseFloat(row.cells[2].textContent);
+        row.cells[2].textContent = currentSpent + spent;
+        const currentBudget = parseFloat(row.cells[1].getAttribute("data-budget")); // get the budget value
+        row.cells[3].textContent = currentBudget - (currentSpent + spent); // update difference cell
+        totalSpent += spent;
+        updateTotals();
+        foundRow = true;
+        break;
+      }
+    }
+    if (!foundRow) {
+      alert("Category not found. Add the category and budget first.");
+    } else {
+      categoryInput.value = "";
+      budgetInput.value = "";
+    }
+  }
+});
+
+resetButton.addEventListener("click", () => {
+  // Clear the budget table
+  budgetTable.innerHTML = "";
+
+  // Reset total variables
+  totalBudget = 0;
+  totalSpent = 0;
+
+  // Update totals
+  updateTotals();
+});
+
+function updateTotals() {
+  totalRow.textContent = `Total: $${totalBudget.toFixed(2)} | $${totalSpent.toFixed(2)}`;
+}
+  </script>
+</body>
+</html>

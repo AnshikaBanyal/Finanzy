@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="with=device-width, initial-scale=1.0">
+        <title>XYZ</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2? family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+<body>
+    <section class="sub-header">
+      <nav>
+        <a href="home.html"><img src="finanzy.png"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="userhome.html">HOME</a></li>
+                <li><a href="budget.html">BUDGET</a></li>
+                <li><a href="split.html">BILL SPLIT</a></li>
+                <li><a href="advisoryf.html">ADVISORY</a></li>
+                <li><a href="userabout.html">ABOUT</a></li>
+                <li><a href="usercontact.html">CONTACT</a></li>
+                <li><a href="">LOGOUT</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>  
+      <h1>Contact Us</h1>
+  
+    </section>
+    <section class="contact-us">
+        <div class="row">
+<div class ="contact-col">
+<div>
+   <i class="fa fa-home"></i> 
+   <span>
+    <h5>XYZ Road, ABC Building</h5>
+    <p>Bangalore,Karnataka,IN</p>
+   </span>
+</div>
+<div>
+    <i class="fa fa-phone"></i> 
+    <span>
+     <h5>+91 9999999999</h5>
+     <p>Everyday, 8AM to 9PM</p>
+    </span>
+ </div>
+ <div>
+    <i class="fa fa-envelope-o"></i> 
+    <span>
+     <h5>info@finanzy.com</h5>
+     <p>Email us your query</p>
+    </span>
+ </div>
+</div>
+<div class ="contact-col">
+    <form action="form-handler.php " method="post">
+        <input type="text" name="name"placeholder="Enter your name" required>
+        <input type="email" name="email" placeholder="Enter email address" required>
+        <input type="text" name="subject" placeholder="Enter your subject" required>
+        <textarea rows="8"name="message" placeholder="Message" required></textarea>
+        <button type="submit" class="hero-btn red-btn">Send Message</button>
+    </form>
+
+
+
+
+</div>
+
+        </div>
+
+    </section>
+
+
+    
+
+   
+
+ 
+
+
+
+<section class="footer">
+    <h4>About Us</h4>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora aut sapiente odit quidem esse suscipit perferendis perspiciatis facilis accusamus? Qui laboriosam, et harum doloremque ipsum reiciendis alias illum dolores quisquam?</p>
+<div class="icons" >
+    <i class="fa fa- facebook"></i>
+    <i class="fa fa- twitter"></i>
+    <i class="fa fa- instagram"></i>
+    <i class="fa fa- linkedin"></i>
+</div>
+
+
+
+
+
+
+</section>
+
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+
+        function showMenu(){
+            navLinks.style.right="0";
+        }
+        function hideMenu(){
+            navLinks.style.right="-200px";
+        }
+    </script>
+</body>
+</html>
