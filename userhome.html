@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="with=device-width, initial-scale=1.0">
+        <title>Finanzy.home</title>
+        <link rel="stylesheet" href="tip2.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2? family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+<body>
+    <section class="user-header">
+      <nav>
+        <a href="home.html"><img src="finanzy.png"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="userhome.html">HOME</a></li>
+                <li><a href="budget.html">BUDGET</a></li>
+                <li><a href="split.html">BILL SPLIT</a></li>
+                <li><a href="advisoryf.html">ADVISORY</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+                <li><a href="logoout.html">LOGOUT</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>  
+      <h1>Welcome!</h1>
+     
+    </section>
+    <script>
+        var navLinks = document.getElementById("navLinks");
+
+        function showMenu(){
+            navLinks.style.right="0";
+        }
+        function hideMenu(){
+            navLinks.style.right="-200px";
+        }
+    </script>
+    <body>
+
+        <div class="tips-box">
+            <h2> Tip of the day!</h2>
+            <blockquote id="tipDisplay">Loading...</blockquote>
+    
+        </div>
+        <script>
+            // Array of predefined tips
+            const tipsArray = [
+                "Budget with Purpose: Take charge of your finances by creating a budget. Categorize spending, set realistic goals, and track your progress. Your budget is your financial roadmap.",
+                "Emergency Fund Essentials: Build a safety net for life's unexpected twists. Aim for 3-6 months of living expenses in your emergency fund. It's your financial cushion when you need it most.",
+                "Invest in Tomorrow: Start today to secure your future. Save and invest wisely for both short-term goals and long-term growth. Your financial health is an investment in your future self.",
+                "Conquer Debt Strategically: Tackle high-interest debt first, and use credit wisely. A debt-free journey begins with smart financial decisions today.",
+                "Conquer Debt Strategically: Tackle high-interest debt first, and use credit wisely. A debt-free journey begins with smart financial decisions today.",
+                "Live Below Your Means: Resist the urge to inflate your lifestyle with every income increase. Save and invest the difference, distinguishing needs from wants.",
+                "Knowledge is Financial Power: Commit to lifelong financial learning. Stay informed about investment options, tax strategies, and financial planning. Knowledge is the key to financial empowerment.",
+                "Safeguard with Insurance: Protect your future with adequate insurance coverage. Regularly review and update health, life, and property insurance to ensure peace of mind.",
+                "Plan Your Retirement Journey: Start saving early for retirement. Maximize contributions to employer-sponsored plans and invest wisely. Your retirement is your reward for thoughtful financial planning.",
+                "Diversify Your Income: Explore additional income streams aligned with your skills and interests. Diversify your sources of income for a more resilient financial future.",
+                "Regularly Review and Adjust: Regularly revisit your financial goals and adjust your strategy accordingly. Flexibility and adaptability are key to financial success.",
+                "Negotiate for Savings: Flex your bargaining skills! Negotiate bills and expenses to secure the best deals. Every dollar saved is a dollar earned for your financial goals.",
+                "Shop Smart: Practice mindful spending by shopping around for the best prices. Be intentional with your purchases, and make every dollar count towards your financial well-being.",
+                "Plan for Taxes: Stay ahead of the tax game. Understand your obligations, explore deductions, and plan strategically. Smart tax management is a crucial part of your financial playbook.",
+                "Regularly Assess Your Insurance: Ensure your insurance coverage aligns with your current needs. Regularly review policies to guarantee you're adequately protected. Peace of mind is priceless.",
+                "Side Hustle Wisdom: Explore side hustles aligned with your skills and passions. Diversify your income streams to boost financial resilience. Your side hustle could be the key to unlocking new financial opportunities.",
+                "Cut Unnecessary Expenses: Trim the excess. Identify and eliminate unnecessary expenses to maximize savings. Small sacrifices today lead to significant financial gains tomorrow.",
+                "Harness the Power of Compound Interest: Let your money work for you! Embrace the magic of compound interest by consistently saving and investing. Time is your greatest ally in building wealth.",
+                "Prioritize Financial Goals: Focus on what matters most. Prioritize your financial goals, whether it's buying a home, paying off debt, or traveling. Align your spending with your priorities.",
+                "Celebrate Financial Wins: Acknowledge and celebrate your financial victories, big or small. Positive reinforcement fuels motivation, turning good financial habits into a lasting lifestyle.",
+                "Seek Professional Advice: Don't hesitate to consult financial professionals when needed. Whether it's a financial planner, tax advisor, or attorney, expert guidance can provide valuable insights for your unique situation.",
+                "Stay Disciplined in Market Volatility: During market fluctuations, stay disciplined. Avoid impulsive decisions and stick to your long-term investment strategy. Patience is a virtue in building lasting wealth.",
+                "Set SMART Financial Goals: Make your goals Specific, Measurable, Achievable, Relevant, and Time-bound (SMART). Clear goals create a roadmap for your financial journey.",
+                "Automate Your Savings: Simplify your savings by setting up automatic transfers. Consistent contributions make saving effortless and help you reach your financial goals faster.",
+                "Understand Your Money Mindset: Reflect on your beliefs and attitudes toward money. Understanding your money mindset is crucial for making positive financial decisions.",
+                "Teach Yourself Financial Literacy: Dedicate time each day to expand your financial knowledge. Educate yourself on personal finance topics to make informed and empowered decisions.",
+                "Plan Financial 'No-Spend' Days: Challenge yourself to occasional 'no-spend' days. It's a simple yet effective way to break spending habits and boost your savings.",
+                "Review Subscription Expenses: Audit your subscriptions regularly. Cancel services you no longer need, and consider more cost-effective alternatives. Save money while simplifying your life.",
+                "Stay Mindful of Impulse Purchases: Before making a purchase, take a moment to consider if it aligns with your financial goals. Avoid impulsive buying to maintain control over your spending.",
+                "Network for Career Advancement: Invest time in professional relationships. Networking can open doors to new career opportunities, potentially increasing your income over time.",
+                "Declutter and Sell Unneeded Items: Decluttering your space can be financially rewarding. Sell items you no longer need to generate extra income and create a minimalist lifestyle.",
+                "Regularly Check Your Credit Report: Monitor your credit regularly to catch any discrepancies or fraudulent activities. A healthy credit report is essential for favorable interest rates and financial stability.",
+                "Be Wary of Lifestyle Inflation: As your income increases, resist the urge to upgrade every aspect of your lifestyle. Maintaining a balance prevents unnecessary financial strain.",
+                "Practice Gratitude with Finances: Cultivate gratitude for what you have. It fosters contentment and can help you make mindful financial decisions based on needs rather than wants.",
+                "Reevaluate Investment Strategies Annually: Periodically reassess your investment portfolio to ensure it aligns with your financial goals. Adjust your strategy as needed to optimize returns.",
+                "Learn from Financial Mistakes: Mistakes happen. Instead of dwelling on them, learn from financial missteps. Use them as opportunities to grow and improve your financial decision-making.",
+                "Track Your Net Worth Regularly: Monitor your net worth consistently. Tracking assets and liabilities provides a snapshot of your financial health and progress over time.",
+                "Establish a Rainy Day Fund: In addition to an emergency fund, consider a separate fund for unexpected expenses not covered by insurance. Be prepared for any financial storm.",
+                "Leverage Employer Benefits: Maximize employer benefits such as retirement plans, health savings accounts, and employee assistance programs. They can significantly enhance your financial well-being.",
+                "Audit Your Monthly Bills: Review your monthly bills for unnecessary charges. Negotiate or eliminate expenses that no longer align with your priorities.",
+                "Use Windfalls Wisely: Whether it's a tax refund, bonus, or unexpected cash influx, resist the urge to splurge. Allocate windfalls toward savings, debt repayment, or investments.",
+                "Explore Passive Income Streams: Investigate opportunities for passive income, such as investments, royalties, or dividends. Diversifying income sources can enhance your financial stability.",
+                "Prioritize Self-Care: Your mental and physical well-being impact your financial health. Prioritize self-care to reduce stress and enhance your ability to make sound financial decisions.",
+                "Plan Financially for Major Life Events: Anticipate major life events, such as weddings, education expenses, or home purchases. Plan ahead to manage these financial transitions smoothly.",
+                "Reevaluate Insurance Needs Periodically: Life changes may alter your insurance needs. Review your coverage regularly to ensure it aligns with your current circumstances.",
+                "Foster a Healthy Relationship with Money: Reflect on your relationship with money. Strive for a positive mindset that empowers rather than limits your financial journey.",
+                "Set Up Alerts for Financial Accounts: Stay vigilant by setting up alerts for your bank accounts and credit cards. Early detection of unusual activity can prevent financial headaches.",
+                "Establish a College Savings Plan: If you have children, start planning for their education early. Explore options like 529 plans to ease the financial burden of higher education.",
+                "Review and Simplify Investments: Regularly review your investment portfolio. Consider consolidating accounts and simplifying your investments for easier management.",
+                "Invest in Your Skills: Continuously invest in your skills and education. Enhancing your abilities can lead to career growth and increased earning potential.",
+                "Foster Financial Communication: If you share finances with a partner, maintain open communication about money matters. A united approach to financial goals strengthens your financial foundation."
+    
+    
+            ];
+    
+            // Function to load and display a random tip
+            function loadRandomTip() {
+                // Get a random index
+                const randomIndex = Math.floor(Math.random() * tipsArray.length);
+    
+                // Display the random tip
+                document.getElementById('tipDisplay').innerText = tipsArray[randomIndex];
+            }
+    
+            // Load a random tip when the page is loaded or refreshed
+            window.onload = loadRandomTip;
+        </script>
+    
+    </body>
+    </html>
+    
+</body>
+</html>

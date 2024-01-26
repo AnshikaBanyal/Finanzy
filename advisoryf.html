@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanzy.advisory</title>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2? family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      *{
+    margin:0;
+    padding:0;
+    font-family: 'Poppins', sans-serif;
+}  
+.sub-header {
+    height: 50vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)), url(banner.png);
+    background-position: center;
+    background-size:cover;
+    text-align: center ;
+    color: #fff;
+
+}
+nav{
+    display: flex;
+    padding: 2% 6%;
+    justify-content: space-between;
+    align-items: center;
+}
+nav img{
+    width: 150px;
+}
+.nav-links{
+    flex: 1;
+    text-align: right;
+}
+.nav-links ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+.nav-links ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+}
+.nav-links ul li::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #f44336;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+.nav-links ul li:hover::after{
+    width: 100%;
+}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+
+        }
+        nav .fa{
+    display: none;
+}
+@media(max-width: 700px){
+    .text-box h1{
+        font-size:20px;
+    }
+    .nav-links ul li{
+        display: block;
+    }
+    .nav-links{
+        position: fixed;
+        background: #f44336;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+        transition: 1s;
+    }
+    nav .fa{
+        display: block;
+        color: #fff;
+        margin: 10px;
+        font-size:22px;
+        cursor: pointer;
+    }
+    .nav-links ul{
+        padding: 30px;
+    }
+}
+
+#container {
+        /* Modify positioning to stack below sub-header */
+        background: #fff;
+        width: 700px;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: 40px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 10px 20px 0px rgba(0, 0, 0, 0.15);
+
+    }
+
+        h2 {
+            color: #333333;
+        }
+
+        #ageSelector {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #financialTips {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        h3 {
+            color: #333333;
+        }
+
+        #tipsText {
+            color: #555555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <section class="sub-header">
+        <nav>
+          <a href="home.html"><img src="finanzy.png"></a>
+          <div class="nav-links" id="navLinks">
+              <i class="fa fa-times" onclick="hideMenu()"></i>
+              <ul>
+                  <li><a href="userhome.html">HOME</a></li>
+                  <li><a href="budget.html">BUDGET</a></li>
+                  <li><a href="split.html">BILL SPLIT</a></li>
+                  <li><a href="advisoryf.html">ADVISORY</a></li>
+                  <li><a href="userabout.html">ABOUT</a></li>
+                  <li><a href="usercontact.html">CONTACT</a></li>
+                  <li><a href="logoout.html">LOGOUT</a></li>
+              </ul>
+          </div>
+          <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>  
+        <h1>ADVISORY</h1>
+    
+      </section>
+      <section>
+<div id="container">
+    <h2>Select Your Age</h2>
+    <select id="ageSelector">
+        <option value="18-25">18 - 25</option>
+        <option value="26-35">26 - 35</option>
+        <option value="36-50">36 - 50</option>
+        <option value="51-65">51 - 65</option>
+        <option value="66+">66+</option>
+    </select>
+    <button onclick="showFinancialTips()">Show Financial Tips</button>
+
+    <div id="financialTips">
+        <h3>Financial Tips:</h3>
+        <p id="tipsText"></p>
+    </div>
+</div>
+</section>
+<script>
+     var navLinks = document.getElementById("navLinks");
+
+function showMenu(){
+    navLinks.style.right="0";
+}
+function hideMenu(){
+    navLinks.style.right="-200px";
+}
+    function showFinancialTips() {
+        var ageSelector = document.getElementById("ageSelector");
+        var selectedAge = ageSelector.value;
+
+        var tipsText = document.getElementById("tipsText");
+
+        switch (selectedAge) {
+            case "18-25":
+                tipsText.innerHTML = "1. Build an Emergency Fund:<br>"+
+                "Start saving a portion of your income for unexpected expenses. Aim to have at least three to six months worth of living expenses in your emergency fund. <br>"+
+                "2. Open a Savings Account: <br>" +
+                "Establish a savings account to earn interest on your money. Use the account to save for short-term goals like travel or further education. <br>"+
+                "3. Explore Part-Time Job Opportunities: <br>"+
+                "Consider part-time employment or freelancing to gain additional income. This can help you build work experience and contribute to your financial independence.<br>"+
+                "4. Start Investing: <br>" +
+                "Learn about basic investment options like stocks and bonds. Consider opening a low-cost investment account to start growing your wealth. <br>" +
+                "5. Create a Budget: <br>"+
+                "Develop a budget to track your income and expenses. Identify areas where you can cut expenses and allocate more to savings or debt repayment.";
+                break;
+                case "26-35":
+            tipsText.innerHTML = "1. Explore Investment Options:<br>" +
+                "Diversify your investments by exploring stocks, bonds, and mutual funds. Consider a mix of conservative and growth-oriented investments based on your risk tolerance.<br>" +
+                "2. Create a Comprehensive Budget:<br>" +
+                "Develop a detailed budget that includes savings, investments, and debt repayment. Ensure your spending aligns with your financial goals.<br>" +
+                "3. Contribute More to Retirement Accounts:<br>" +
+                "Increase contributions to your retirement accounts, such as 401(k) or IRA. Take advantage of employer matches and tax benefits associated with retirement savings.<br>" +
+                "4. Manage Debt Wisely:<br>" +
+                "Develop a plan to pay off high-interest debt. Prioritize debt with the highest interest rates while making minimum payments on others.<br>" +
+                "5. Consider Homeownership:<br>" +
+                "Explore homeownership as a long-term investment. Save for a down payment and research mortgage options that fit your financial situation.";
+            break;
+
+        case "36-50":
+            tipsText.innerHTML = "1. Focus on Retirement Planning:<br>" +
+                "Assess your retirement goals and adjust your savings strategy accordingly. Consider consulting a financial advisor to optimize your retirement plan.<br>" +
+                "2. Review Insurance Coverage:<br>" +
+                "Evaluate your life, health, and property insurance coverage. Ensure you have adequate coverage to protect against unforeseen events.<br>" +
+                "3. Explore Additional Income Streams:<br>" +
+                "Investigate opportunities for passive income, such as investments or side businesses. Diversify income sources to increase financial stability.<br>" +
+                "4. Create a Will and Estate Plan:<br>" +
+                "Establish a will to outline your wishes for asset distribution. Consider creating an estate plan to protect your wealth and provide for loved ones.<br>" +
+                "5. Reevaluate Expenses:<br>" +
+                "Regularly review your expenses and identify areas for potential savings. Allocate additional funds towards long-term goals like education or travel.";
+            break;
+
+        case "51-65":
+            tipsText.innerHTML = "1. Consider Downsizing:<br>" +
+                "Evaluate your living situation and consider downsizing if it aligns with your lifestyle. Use the proceeds to enhance your retirement savings.<br>" +
+                "2. Ensure Retirement Plans Are in Place:<br>" +
+                "Confirm your retirement income sources, including pensions and Social Security. Adjust your investments to reflect a more conservative risk profile.<br>" +
+                "3. Evaluate Healthcare Options:<br>" +
+                "Research and understand your healthcare options. Consider long-term care insurance to prepare for potential medical expenses.<br>" +
+                "4. Plan for Long-Term Care:<br>" +
+                "Develop a plan for long-term care, including potential assisted living or nursing home costs. Consider the impact on your finances and family.<br>" +
+                "5. Stay Informed about Financial Assistance for Seniors:<br>" +
+                "Stay informed about government programs and financial assistance available for seniors. Explore benefits like Medicare, Medicaid, and senior discounts.";
+            break;
+
+        case "66+":
+            tipsText.innerHTML = "1. Manage Assets Wisely:<br>" +
+                "Regularly review and manage your investment portfolio. Focus on capital preservation and income generation in retirement.<br>" +
+                "2. Stay Informed about Financial Assistance:<br>" +
+                "Stay updated on financial assistance programs available to seniors. Explore resources for tax relief, housing assistance, and healthcare support.<br>" +
+                "3. Consider Estate Planning:<br>" +
+                "Update your estate plan regularly to reflect your current wishes. Ensure a smooth transition of assets to heirs.<br>" +
+                "4. Explore Senior Living Options:<br>" +
+                "Research and plan for potential senior living arrangements. Consider factors such as independent living, assisted living, or continuing care retirement communities.<br>" +
+                "5. Stay Socially Engaged:<br>" +
+                "Stay socially engaged to maintain a healthy and fulfilling retirement. Participate in community activities, clubs, and social events.";
+            break;
+            default:
+                tipsText.textContent = "Please select your age.";
+                break;
+        }
+
+        document.getElementById("financialTips").style.display = "block";
+    }
+
+
+
+    // JavaScript for button hover effect
+    var button = document.querySelector('button');
+
+    button.addEventListener('mouseover', function () {
+        button.style.backgroundColor = '#45a049';
+    });
+
+    button.addEventListener('mouseout', function () {
+        button.style.backgroundColor = '#4CAF50';
+    });
+</script>
+
+
+
+</body>
+</html>
