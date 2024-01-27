@@ -1,0 +1,93 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+h2 {
+    color: #333333;
+}
+
+#ageSelector {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#financialTips {
+    display: none;
+    margin-top: 20px;
+    text-align: left;
+}
+
+h3 {
+    color: #333333;
+}
+
+#tipsText {
+    color: #555555;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Additional Styling for Services and Contact Sections */
+hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 20px 0;
+}
+
+#additionalServices,
+#contactUs {
+    text-align: left;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#additionalServices h3,
+#contactUs h3 {
+    margin-top: 0;
+}
+
+#contactUs p {
+    margin: 5px 0;
+    font-weight: bold;
+}
