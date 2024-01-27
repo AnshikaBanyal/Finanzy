@@ -10,7 +10,7 @@ The primary purpose of the Finanzy Website is to offer a user-friendly and featu
 
 ## Technologies Used
 
-The website has been implemented using HTML and CSS for coding the web pages. These technologies provide a solid foundation for creating responsive and visually appealing user interfaces.
+The website has been implemented using HTML, CSS and JavaScript for coding the web pages. These technologies provide a solid foundation for creating responsive and visually appealing user interfaces.
 
 ## Features and Functionalities
 
